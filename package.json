@@ -1,6 +1,6 @@
 {
   "name": "prometheus-alert-diff",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Compare differences in alerts on different Prometheus servers",
   "main": "index.js",
   "scripts": {

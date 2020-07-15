@@ -5,11 +5,11 @@ const https = require('https');
 main()
 
 async function main() {
-    const servers = process.env.PROMETHEUS_SERVERS.split(' ');
-    if (!servers) {
+    if (!process.env.PROMETHEUS_SERVERS) {
         console.error('No servers provided! Exiting...');
         process.exit(1);
     }
+    const servers = process.env.PROMETHEUS_SERVERS.split(' ');
     const alertName = process.argv[2];
     if (!alertName) {
         console.error('No alert name provided! Exiting...');
