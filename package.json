@@ -1,0 +1,25 @@
+{
+  "name": "prometheus-alert-diff",
+  "version": "0.0.1",
+  "description": "Compare differences in alerts on different Prometheus servers",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tomy8s/prometheus-alert-diff.git"
+  },
+  "keywords": [
+    "Prometheus"
+  ],
+  "author": "TomY8s@hotmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Tomy8s/prometheus-alert-diff/issues"
+  },
+  "homepage": "https://github.com/Tomy8s/prometheus-alert-diff#readme",
+  "bin": {
+    "prometheus-alert-diff": "index.js"
+  }
+}
