@@ -23,6 +23,13 @@ function generateAnnotationMsg(annotations) {
     return message;
 }
 
+function getAlertName() {
+    validateAlertName();
+    const alertName = process.argv[2];
+
+    return alertName;
+}
+
 function getServers() {
     validateServers();
     const servers = process.env.PROMETHEUS_SERVERS.split(' ');
@@ -38,15 +45,24 @@ function handleError({ server, statusCode }) {
     console.error('\x1b[31m%s\x1b[0m', message);
 }
 
+function validateAlertName() {
+    if (!process.argv[2]) {
+        console.error('No alert name provided! Exiting...');
+        process.exit(1);
+    }
+}
+
+
 function validateServers() {
     if (!process.env.PROMETHEUS_SERVERS) {
-        console.error('No servers provided! Exiting...');
+        console.error('\x1b[33m%s\x1b[0m', 'No servers provided! Exiting...');
         process.exit(1);
     }
 }
 
 module.exports = {
     extractLabels,
+    getAlertName,
     generateAnnotationMsg,
     getServers,
     handleError,
