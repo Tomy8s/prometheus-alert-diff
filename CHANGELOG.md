@@ -1,12 +1,15 @@
 # Changelog
 
-## Unreleased
+## [0.0.3] - 2020-08-01
 
 ### Added
 
 - Colour in text
 
 ### Changed
+
+- Various code refactors
+- Added a few basic tests
 
 ### Fixed
 
