@@ -2,9 +2,9 @@
   "name": "prometheus-alert-diff",
   "version": "0.0.2",
   "description": "Compare differences in alerts on different Prometheus servers",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -20,6 +20,10 @@
   },
   "homepage": "https://github.com/Tomy8s/prometheus-alert-diff#readme",
   "bin": {
-    "prometheus-alert-diff": "index.js"
+    "prometheus-alert-diff": "src/index.js"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^8.1.0"
   }
 }
