@@ -41,4 +41,24 @@ annotations:
             });
         }
     });
+
+
+    describe('generateAnnotationMsg', function describeGenerateAnnotationMsg() {
+        [
+            {
+                input: { a1: 'an1', a2: 'an2' },
+                expected: `
+  a1: an1
+  a2: an2`,
+            },
+        ].forEach(itGeneratesAnnotationsTemplate);
+
+        function itGeneratesAnnotationsTemplate({ input, expected }) {
+            it('generates annotations', function itGeneratesAnnotations() {
+                const actual = generateAnnotationMsg(input);
+
+                expect(actual).to.eql(expected);
+            });
+        }
+    });
 });
