@@ -18,7 +18,11 @@ async function main() {
     servers.forEach(getResult);
 
     function getResult(server) {
-        https.get(`${server}/api/v1/rules?type=alerts`, handler);
+        https.get(`${ server }/api/v1/rules?type=alerts`, handler).on('error', errorForServer);
+
+        function errorForServer() {
+            return handleError({ server });
+        }
 
         function handler(response) {
             let body = '';
@@ -32,16 +36,15 @@ async function main() {
                         const { rules } = data.groups[0];
                         const alerts = rules.filter(alert => alert.name === alertName);
                         if (alerts.length) {
-                            console.log(`${server}:`);
+                            console.log('\x1b[32m%s\x1b[0m', `${ server }:`);
                             console.log(alerts.map(extractLabels).join('\n'));
                             console.log('======================================================');
                         } else {
-                            console.log(`No matching alerts found on ${server}.`)
+                            console.log('\x1b[33m%s\x1b[0m', `No matching alerts found on ${ server }.`)
                         }
                     }
                 } catch (error) {
-                    console.error('Error calling ' + server);
-                    console.error(error);
+                    handleError({ server, statusCode: response.statusCode })
                 }
             }
 
@@ -69,10 +72,18 @@ function generateAnnotationMsg(annotations) {
     const lines = []
 
     for (const annotation in annotations) {
-        lines.push(`${annotation}: ${annotations[annotation]}`);
+        lines.push(`${ annotation }: ${annotations[ annotation ]}`);
     }
 
-    const message = `\n  ${lines.join('\n  ')}`
+    const message = `\n  ${ lines.join('\n  ') }`
 
     return message;
+}
+
+function handleError({ server, statusCode }) {
+    const responseCodeMessage =  statusCode ?
+        `, returned "${ statusCode }"` : '';
+    const message = `Could not connect to ${ server }${ responseCodeMessage }.`;
+
+    console.error('\x1b[31m%s\x1b[0m', message);
 }
