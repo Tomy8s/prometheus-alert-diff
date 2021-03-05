@@ -1,11 +1,11 @@
 
 function extractLabels({ name, query, duration, labels, annotations }) {
     const message = `
-name: ${ name}
-query: ${ query}
-duration: ${ duration}
-labels: ${ objToYaml(labels)}
-annotations: ${ objToYaml(annotations)}
+name: ${ name }
+query: ${ query }
+duration: ${ duration }
+labels: ${ objToYaml(labels) }
+annotations: ${ objToYaml(annotations) }
 `;
 
     return message;
@@ -15,7 +15,7 @@ function objToYaml(object) {
     const lines = []
 
     for (const key in object) {
-        lines.push(`${ key }: ${object[ key ]}`);
+        lines.push(`${ key }: ${ object[ key ] }`);
     }
 
     const message = `\n  ${ lines.join('\n  ') }`
