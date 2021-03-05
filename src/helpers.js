@@ -4,6 +4,7 @@ function extractLabels({ name, query, duration, labels, annotations }) {
 name: ${ name}
 query: ${ query}
 duration: ${ duration}
+labels: ${ objToYaml(labels)}
 annotations: ${ objToYaml(annotations)}
 `;
 
