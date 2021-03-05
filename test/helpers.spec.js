@@ -2,7 +2,7 @@ const {
     expect,
     testSubjects: {
         extractLabels,
-        generateAnnotationMsg,
+        objToYaml,
         getServers,
         handleError,
         validateServers
@@ -25,7 +25,9 @@ describe('helpers', function describeHelpers() {
 name: test name
 query: test query
 duration: test duration
-labels: {"l1":"v1","l2":"v2"}
+labels: 
+  l1: v1
+  l2: v2
 annotations: 
   a1: an1
   a2: an2
@@ -55,7 +57,7 @@ annotations:
 
         function itGeneratesAnnotationsTemplate({ input, expected }) {
             it('generates annotations', function itGeneratesAnnotations() {
-                const actual = generateAnnotationMsg(input);
+                const actual = objToYaml(input);
 
                 expect(actual).to.eql(expected);
             });

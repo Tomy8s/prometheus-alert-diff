@@ -4,18 +4,17 @@ function extractLabels({ name, query, duration, labels, annotations }) {
 name: ${ name}
 query: ${ query}
 duration: ${ duration}
-labels: ${ JSON.stringify(labels)}
-annotations: ${ generateAnnotationMsg(annotations)}
+annotations: ${ objToYaml(annotations)}
 `;
 
     return message;
 }
 
-function generateAnnotationMsg(annotations) {
+function objToYaml(object) {
     const lines = []
 
-    for (const annotation in annotations) {
-        lines.push(`${ annotation }: ${annotations[ annotation ]}`);
+    for (const key in object) {
+        lines.push(`${ key }: ${object[ key ]}`);
     }
 
     const message = `\n  ${ lines.join('\n  ') }`
@@ -63,7 +62,7 @@ function validateServers() {
 module.exports = {
     extractLabels,
     getAlertName,
-    generateAnnotationMsg,
+    objToYaml,
     getServers,
     handleError,
     validateServers,
